@@ -6,7 +6,7 @@ public class MergeTwoSortedLists {
         Solution s = new Solution();
 
         ListNode list1 = new ListNode(1, new ListNode(2, new ListNode(4)));
-        ListNode list2 = new ListNode(1, new ListNode(3, new ListNode(4)));
+        ListNode list2 = new ListNode(1, new ListNode(3, new ListNode(5)));
 
         ListNode result = s.mergeTwoLists(list1, list2);
 
@@ -31,6 +31,7 @@ class Solution {
             return (list1 != null) ? list1 : list2;
         }
 
+        //Se list1 menor -> envia seu next e list2 para recurssão.
         if (list1.val <= list2.val) {
             list1.next = mergeTwoLists(list1.next, list2);
             return list1;
@@ -38,5 +39,7 @@ class Solution {
             list2.next = mergeTwoLists(list2.next, list1);
             return list2;
         }
+
+        //No fim retorna o menor nó entre list1 e list2 para preencher o next da recurssão.
     }
 }
