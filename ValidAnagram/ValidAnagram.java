@@ -7,7 +7,7 @@ public class ValidAnagram {
     public static void main(String[] args) {
         Solution s = new Solution();
 
-        System.err.println("\n\n");
+        System.out.println("\n\n");
         System.out.println(s.isAnagram("anagram", "nagaram")); // esperado: true
         System.out.println(s.isAnagram("rat", "car")); // esperado: false
         System.out.println(s.isAnagram("aab", "abb")); // esperado: false
