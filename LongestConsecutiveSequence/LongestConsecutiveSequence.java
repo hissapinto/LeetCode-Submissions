@@ -11,6 +11,7 @@ public class LongestConsecutiveSequence {
         System.out.println(s.longestConsecutive(new int[]{0,3,7,2,5,8,4,6,0,1})); // esperado: 9
         System.out.println(s.longestConsecutive(new int[]{}));                     // esperado: 0
         System.out.println(s.longestConsecutive(new int[]{1}));                    // esperado: 1
+        System.out.println(s.longestConsecutiveImproved(new int[]{2,7,5,3,4,8,9,1,1,0,5,13,74,97,2,6,37,7,10}));
     }
 }
 
@@ -48,6 +49,32 @@ class Solution {
                 }
             }
             if (aux > resp) {resp = aux;}
+        }
+ 
+        return resp;
+    }
+
+    //Sem variáveis e condições desnecessárias
+    public int longestConsecutiveImproved(int[] nums) {
+        int resp = 0;
+        int len = nums.length;
+
+        Set <Integer> set = new HashSet<>();
+        for (int j = 0; j < len; j++) {
+            set.add(nums[j]);
+        }
+
+        for(int key : set) {
+            int prox = key + 1;
+
+            if(!set.contains(key - 1)) {
+                int aux = 1;
+                while(set.contains(prox)) {
+                    aux++;
+                    prox++;
+                }
+                if (aux > resp) {resp = aux;}
+            }
         }
  
         return resp;
