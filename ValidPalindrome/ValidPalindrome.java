@@ -23,7 +23,7 @@ class Solution {
                 dir--;
             }
 
-            if (Character.toLowerCase(s.charAt(esq)) == Character.toLowerCase(s.charAt(dir))) {
+            if (toLower(s.charAt(esq)) == toLower(s.charAt(dir))) {
                 esq++;
                 dir--;
             } else {
@@ -38,6 +38,11 @@ class Solution {
         return ('A' <= c && c <= 'Z' ||
                 'a' <= c && c <= 'z' ||
                 '0' <= c && c <= '9');
+    }
+
+    private char toLower(char c) {
+        if(c >= 'A' && c <= 'Z') return (char)(c+32);
+        return c;
     }
 }
 
