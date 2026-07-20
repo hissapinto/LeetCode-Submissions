@@ -21,14 +21,12 @@ class Solution {
         int resp = Math.max(0, prices[r] - prices[l]);
 
         while (r < prices.length) {
-            if (r < prices.length - 1 && prices[l] > prices[r]) {
-                l = r;
-                r = l + 1;
+            if (prices[l] < prices[r]) {
                 resp = Math.max(resp, prices[r] - prices[l]);
             } else {
-                resp = Math.max(resp, prices[r] - prices[l]);
-                r++;
-            } 
+                l = r; 
+            }
+            r++;
         }
 
         return resp;
