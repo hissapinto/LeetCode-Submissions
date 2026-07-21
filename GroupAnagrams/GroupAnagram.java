@@ -79,4 +79,55 @@ class Solution {
 
         return resposta;
     }
+
+    public List<List<String>> groupAnagramsImprovedMenosVerbosa(String[] strs) {
+        List<List<String>> resp = new ArrayList<>();
+        HashMap<String, Integer> map = new HashMap<>();
+
+        for (String s : strs) {
+            String key = toArray(s);
+
+            if (!map.containsKey(key)) {
+                int index = resp.size();
+
+                List<String> list = new ArrayList<>();
+                list.add(s);
+                resp.add(list);
+
+                map.put(key, index);
+            } else {
+                int index = map.get(key);
+                resp.get(index).add(s);
+            }
+        }
+
+        return resp;
+    }
+
+    public List<List<String>> groupAnagramsJavaStyle(String[] strs) {
+        HashMap<String, List<String>> map = new HashMap<>();
+
+        for (String s : strs) {
+            String key = toArray(s);
+
+            //Se a chave nao existe, cria k, se não retorna a lista
+            //em cima dessa criaçao ou retorno se poe o .add
+            map.computeIfAbsent(key, k -> new ArrayList<>()).add(s);
+        }
+
+        //map.values retorna Collection<List<String>>, que é convertida em new ArrayList
+        //ArrayList é compativel com retorno List<>
+        return new ArrayList<>(map.values());
+    }
+
+    private String toArray(String s) {
+        int[] a = new int[26];
+
+        for (char c : s.toCharArray()) {
+            int i = c - 97;
+            a[i]++;
+        }
+
+        return Arrays.toString(a);
+    }
 }
